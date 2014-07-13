@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector android:enterFadeDuration="@integer/config_button_enter_animation_time" android:exitFadeDuration="@integer/config_button_exit_animation_time"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_window_focused="false" android:state_enabled="true" android:drawable="@drawable/bg_card_button_white_normal" />
+    <item android:state_window_focused="false" android:state_enabled="false" android:drawable="@drawable/bg_card_button_white_normal" />
+    <item android:state_pressed="true" android:drawable="@drawable/bg_card_button_white_pressed" />
+    <item android:state_focused="true" android:state_enabled="true" android:drawable="@drawable/bg_card_button_white_pressed" />
+    <item android:state_enabled="true" android:drawable="@drawable/bg_card_button_white_normal" />
+    <item android:state_focused="true" android:drawable="@drawable/bg_card_button_white_normal" />
+    <item android:drawable="@drawable/bg_card_button_white_normal" />
+</selector>

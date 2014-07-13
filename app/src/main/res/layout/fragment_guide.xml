@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhihu="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background"
+    >
+
+    <android.support.v4.view.ViewPager
+        android:id="@id/pager"
+        android:paddingBottom="100.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+    <ImageView
+        android:id="@id/pager_marsk"
+        android:layout_width="fill_parent"
+        android:layout_height="100.0dip"
+        android:src="@drawable/guide_mask"
+        android:layout_alignParentBottom="true"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@id/bottons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xlarge"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:textSize="@dimen/text_size_large"
+            android:textColor="@color/text_color_white"
+            android:id="@id/login"
+            android:background="@drawable/bg_card_button_blue"
+            android:padding="0.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xlarge"
+            android:layout_marginRight="@dimen/margin_xlarge"
+            android:minHeight="@dimen/btn_card_height"
+            android:text="@string/login"
+            android:layout_weight="1.0"/>
+
+        <Button
+            android:textSize="@dimen/text_size_large"
+            android:textColor="@color/selectable_text_color_gray_deep"
+            android:id="@id/register"
+            android:background="@drawable/bg_card_button_white"
+            android:padding="0.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xlarge"
+            android:layout_marginRight="@dimen/margin_xlarge"
+            android:minHeight="@dimen/btn_card_height"
+            android:text="@string/register"
+            android:layout_weight="1.0"/>
+    </LinearLayout>
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@id/indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_xlarge"
+        android:layout_above="@id/bottons"
+        zhihu:strokeWidth="0.0dip"
+        zhihu:fillColor="#ffffffff"
+        zhihu:pageColor="#88ffffff"
+        zhihu:strokeColor="#00000000"/>
+
+    <TextSwitcher
+        android:id="@id/tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inAnimation="@anim/slide_in_down"
+        android:outAnimation="@anim/slide_out_up"
+        android:layout_above="@id/indicator"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

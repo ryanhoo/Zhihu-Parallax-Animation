@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="abc_max_action_buttons">2</integer>
+    <integer name="config_activity_animation_time">300</integer>
+    <integer name="config_button_enter_animation_time">0</integer>
+    <integer name="config_button_exit_animation_time">0</integer>
+    <integer name="config_loading_animation_frame_time">60</integer>
+    <integer name="config_splash_interval">3600</integer>
+    <integer name="default_circle_indicator_orientation">0</integer>
+    <integer name="default_title_indicator_footer_indicator_style">2</integer>
+    <integer name="default_title_indicator_line_position">0</integer>
+    <integer name="default_underline_indicator_fade_delay">300</integer>
+    <integer name="default_underline_indicator_fade_length">400</integer>
+    <integer name="ga_dispatchPeriod">60</integer>
+    <integer name="preference_fragment_scrollbarStyle">0x2000000</integer>
+    <integer name="spb_default_interpolator">0</integer>
+    <integer name="spb_default_sections_count">4</integer>
+</resources>

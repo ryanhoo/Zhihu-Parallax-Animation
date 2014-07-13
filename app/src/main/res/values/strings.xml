@@ -5,4 +5,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="drawer_login_by_qq_sort">QQ登录</string>
+    <string name="drawer_login_by_sina_sort">微博登录</string>
+
+    <string name="goto_world">随便看看</string>
+
+    <string name="tip_guide_six">与世界分享\n你的知识、经验和见解</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
 </resources>
