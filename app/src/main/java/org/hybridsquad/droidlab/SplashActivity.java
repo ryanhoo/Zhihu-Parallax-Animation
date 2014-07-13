@@ -4,7 +4,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import droidlab.hybridsquad.org.zhihu_parallax_animation.R;
 
 
 public class SplashActivity extends ActionBarActivity {

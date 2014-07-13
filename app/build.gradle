@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "droidlab.hybridsquad.org.zhihu_parallax_animation"
+        applicationId "org.hybridsquad.droidlab"
         minSdkVersion 9
         targetSdkVersion 20
         versionCode 1
