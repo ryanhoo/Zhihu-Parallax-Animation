@@ -1,34 +1,36 @@
 package org.hybridsquad.droidlab;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.viewpagerindicator.CirclePageIndicator;
 
 public class SplashActivity extends ActionBarActivity {
+
+    ViewPager mPager;
+    CirclePageIndicator mPagerIndicator;
+
+    FragmentAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_guide);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.splash, menu);
-        return true;
-    }
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPagerIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        mAdapter = new FragmentAdapter(getSupportFragmentManager());
+        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_first));
+        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_second));
+        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_third));
+        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_fourth));
+        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_fifth));
+        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_sixth));
+        mPager.setAdapter(mAdapter);
+
+        mPagerIndicator.setViewPager(mPager);
     }
 }
