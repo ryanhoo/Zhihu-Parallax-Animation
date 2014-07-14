@@ -1,0 +1,3 @@
+[submodule "Android-ViewPagerIndicator"]
+	path = Android-ViewPagerIndicator
+	url = git@github.com:ryanhoo/Android-ViewPagerIndicator.git
