@@ -1,11 +1,15 @@
 package org.hybridsquad.droidlab;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import com.viewpagerindicator.CirclePageIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SplashActivity extends ActionBarActivity {
 
@@ -13,6 +17,13 @@ public class SplashActivity extends ActionBarActivity {
     CirclePageIndicator mPagerIndicator;
 
     FragmentAdapter mAdapter;
+
+    List<int[]> mLayers = new ArrayList<int[]>();
+
+    private void addGuide(BaseGuideFragment fragment) {
+        mAdapter.addItem(fragment);
+        mLayers.add(fragment.getChildViewIds());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +34,44 @@ public class SplashActivity extends ActionBarActivity {
         mPagerIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
 
         mAdapter = new FragmentAdapter(getSupportFragmentManager());
-        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_first));
-        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_second));
-        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_third));
-        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_fourth));
-        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_fifth));
-        mAdapter.addItem(new BaseGuideFragment(R.layout.fragment_guide_sixth));
+        addGuide(new FirstGuideFragment());
+        addGuide(new SecondGuideFragment());
+        addGuide(new ThirdGuideFragment());
+        addGuide(new FourthGuideFragment());
+        addGuide(new FifthGuideFragment());
+        addGuide(new SixthGuideFragment());
+
         mPager.setAdapter(mAdapter);
 
         mPagerIndicator.setViewPager(mPager);
+
+        mPager.setPageTransformer(true, new ParallaxTransformer(5f, 1.05f));
+    }
+
+    class ParallaxTransformer implements ViewPager.PageTransformer {
+
+        float parallaxCoefficient;
+        float distanceCoefficient;
+
+        public ParallaxTransformer(float parallaxCoefficient, float distanceCoefficient) {
+            this.parallaxCoefficient = parallaxCoefficient;
+            this.distanceCoefficient = distanceCoefficient;
+        }
+
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        @Override
+        public void transformPage(View page, float position) {
+            float coefficient = page.getWidth() * parallaxCoefficient;
+
+            for (int[] layer : mLayers) {
+                for (int id : layer) {
+                    View view = page.findViewById(id);
+                    if (view != null) {
+                        view.setTranslationX(coefficient * position);
+                    }
+                    coefficient *= distanceCoefficient * 0.8f;
+                }
+            }
+        }
     }
 }
