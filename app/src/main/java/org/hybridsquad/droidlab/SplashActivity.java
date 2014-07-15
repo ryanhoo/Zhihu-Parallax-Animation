@@ -13,6 +13,9 @@ import java.util.List;
 
 public class SplashActivity extends ActionBarActivity {
 
+    final float PARALLAX_COEFFICIENT = 15f;
+    final float DISTANCE_COEFFICIENT = 0.8f;
+
     ViewPager mPager;
     CirclePageIndicator mPagerIndicator;
 
@@ -45,7 +48,7 @@ public class SplashActivity extends ActionBarActivity {
 
         mPagerIndicator.setViewPager(mPager);
 
-        mPager.setPageTransformer(true, new ParallaxTransformer(5f, 1.05f));
+        mPager.setPageTransformer(true, new ParallaxTransformer(PARALLAX_COEFFICIENT, DISTANCE_COEFFICIENT));
     }
 
     class ParallaxTransformer implements ViewPager.PageTransformer {
@@ -69,7 +72,7 @@ public class SplashActivity extends ActionBarActivity {
                     if (view != null) {
                         view.setTranslationX(coefficient * position);
                     }
-                    coefficient *= distanceCoefficient * 0.8f;
+                    coefficient *= distanceCoefficient;
                 }
             }
         }
