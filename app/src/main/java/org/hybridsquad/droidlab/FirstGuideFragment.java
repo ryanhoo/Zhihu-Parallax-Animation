@@ -25,4 +25,9 @@ public class FirstGuideFragment extends BaseGuideFragment {
                 R.id.guide_item_1
         };
     }
+
+    @Override
+    public int getRootViewId() {
+        return R.id.layout_guide_first;
+    }
 }

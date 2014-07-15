@@ -28,4 +28,9 @@ public class FourthGuideFragment extends BaseGuideFragment {
                 R.id.guide_item_4
         };
     }
+
+    @Override
+    public int getRootViewId() {
+        return R.id.layout_guide_fourth;
+    }
 }

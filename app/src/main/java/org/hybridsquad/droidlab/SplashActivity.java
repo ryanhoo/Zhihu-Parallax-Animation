@@ -5,27 +5,26 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.SparseArray;
 import android.view.View;
+import android.view.ViewGroup;
 import com.viewpagerindicator.CirclePageIndicator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SplashActivity extends ActionBarActivity {
 
-    final float PARALLAX_COEFFICIENT = 15f;
-    final float DISTANCE_COEFFICIENT = 0.8f;
+    final float PARALLAX_COEFFICIENT = 1.2f;
+    final float DISTANCE_COEFFICIENT = 0.5f;
 
     ViewPager mPager;
     CirclePageIndicator mPagerIndicator;
 
     FragmentAdapter mAdapter;
 
-    List<int[]> mLayers = new ArrayList<int[]>();
+    SparseArray<int[]> mLayoutViewIdsMap = new SparseArray<int[]>();
 
     private void addGuide(BaseGuideFragment fragment) {
         mAdapter.addItem(fragment);
-        mLayers.add(fragment.getChildViewIds());
+        mLayoutViewIdsMap.put(fragment.getRootViewId(), fragment.getChildViewIds());
     }
 
     @Override
@@ -64,16 +63,17 @@ public class SplashActivity extends ActionBarActivity {
         @TargetApi(Build.VERSION_CODES.HONEYCOMB)
         @Override
         public void transformPage(View page, float position) {
-            float coefficient = page.getWidth() * parallaxCoefficient;
+            float scrollXOffset = page.getWidth() * parallaxCoefficient;
 
-            for (int[] layer : mLayers) {
-                for (int id : layer) {
-                    View view = page.findViewById(id);
-                    if (view != null) {
-                        view.setTranslationX(coefficient * position);
-                    }
-                    coefficient *= distanceCoefficient;
+            ViewGroup pageViewWrapper = (ViewGroup) page;
+            @SuppressWarnings("SuspiciousMethodCalls")
+            int[] layer = mLayoutViewIdsMap.get(pageViewWrapper.getChildAt(0).getId());
+            for (int id : layer) {
+                View view = page.findViewById(id);
+                if (view != null) {
+                    view.setTranslationX(scrollXOffset * position);
                 }
+                scrollXOffset *= distanceCoefficient;
             }
         }
     }

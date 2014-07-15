@@ -27,4 +27,9 @@ public class SecondGuideFragment extends BaseGuideFragment {
                 R.id.guide_item_3
         };
     }
+
+    @Override
+    public int getRootViewId() {
+        return R.id.layout_guide_second;
+    }
 }

@@ -23,4 +23,9 @@ public class SixthGuideFragment extends BaseGuideFragment {
     public int[] getChildViewIds() {
         return new int[]{};
     }
+
+    @Override
+    public int getRootViewId() {
+        return R.id.layout_guide_sixth;
+    }
 }
