@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#ff003479</color>
+    <color name="background">#FF1D2E5A</color>
+
+    <color name="guide_start_background">@color/background</color>
+    <color name="guide_end_background">#FF5494FC</color>
 </resources>

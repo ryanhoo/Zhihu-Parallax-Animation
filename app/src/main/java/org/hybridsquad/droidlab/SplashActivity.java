@@ -1,5 +1,6 @@
 package org.hybridsquad.droidlab;
 
+import android.animation.ArgbEvaluator;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,8 +26,6 @@ public class SplashActivity extends ActionBarActivity {
 
     SparseArray<int[]> mLayoutViewIdsMap = new SparseArray<int[]>();
 
-    String[] mGuideTips;
-
     private void addGuide(BaseGuideFragment fragment) {
         mAdapter.addItem(fragment);
         mLayoutViewIdsMap.put(fragment.getRootViewId(), fragment.getChildViewIds());
@@ -36,8 +35,6 @@ public class SplashActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_guide);
-
-        mGuideTips = getResources().getStringArray(R.array.array_guide_tips);
 
         mTextSwitcher = (TextSwitcher) findViewById(R.id.tip);
 
@@ -56,7 +53,7 @@ public class SplashActivity extends ActionBarActivity {
         mPagerIndicator.setViewPager(mPager);
 
         mPager.setPageTransformer(true, new ParallaxTransformer(PARALLAX_COEFFICIENT, DISTANCE_COEFFICIENT));
-        mPagerIndicator.setOnPageChangeListener(new MyPageChangeListener());
+        mPagerIndicator.setOnPageChangeListener(new GuidePageChangeListener());
     }
 
     class ParallaxTransformer implements ViewPager.PageTransformer {
@@ -87,10 +84,35 @@ public class SplashActivity extends ActionBarActivity {
         }
     }
 
-    class MyPageChangeListener implements ViewPager.OnPageChangeListener {
+    class GuidePageChangeListener implements ViewPager.OnPageChangeListener {
 
+        ArgbEvaluator mColorEvaluator;
+
+        int mPageWidth, mTotalScrollWidth;
+
+        int mGuideStartBackgroundColor, mGuideEndBackgroundColor;
+
+        String[] mGuideTips;
+
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        public GuidePageChangeListener() {
+            mColorEvaluator = new ArgbEvaluator();
+
+            mPageWidth = getWindowManager().getDefaultDisplay().getWidth();
+            mTotalScrollWidth = mPageWidth * mAdapter.getCount();
+
+            mGuideStartBackgroundColor = getResources().getColor(R.color.guide_start_background);
+            mGuideEndBackgroundColor = getResources().getColor(R.color.guide_end_background);
+
+            mGuideTips = getResources().getStringArray(R.array.array_guide_tips);
+        }
+
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            float ratio = (mPageWidth * position + positionOffsetPixels) / (float) mTotalScrollWidth;
+            Integer color = (Integer) mColorEvaluator.evaluate(ratio, mGuideStartBackgroundColor, mGuideEndBackgroundColor);
+            mPager.setBackgroundColor(color);
         }
 
         @Override
