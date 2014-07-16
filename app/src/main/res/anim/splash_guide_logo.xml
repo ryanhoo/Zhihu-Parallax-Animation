@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<translate
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:interpolator="@android:interpolator/decelerate_quint"
+    android:fromYDelta="0%"
+    android:toYDelta="-10%"
+    android:duration="2000"
+    android:fillBefore="true"
+    android:fillAfter="true"
+    tools:ignore="NewApi"/>
