@@ -75,5 +75,25 @@
         android:inAnimation="@anim/slide_in_down"
         android:outAnimation="@anim/slide_out_up"
         android:layout_above="@id/indicator"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_gray_light"
+            android:textSize="@dimen/text_size_medium"
+            android:text="@string/tip_guide_first"
+            android:layout_margin="@dimen/margin_small"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_gray_light"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_margin="@dimen/margin_small"
+            />
+
+    </TextSwitcher>
 </RelativeLayout>

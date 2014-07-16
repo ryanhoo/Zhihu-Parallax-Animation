@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextSwitcher;
 import com.viewpagerindicator.CirclePageIndicator;
 
 public class SplashActivity extends ActionBarActivity {
@@ -15,12 +16,16 @@ public class SplashActivity extends ActionBarActivity {
     final float PARALLAX_COEFFICIENT = 1.2f;
     final float DISTANCE_COEFFICIENT = 0.5f;
 
+    TextSwitcher mTextSwitcher;
+
     ViewPager mPager;
     CirclePageIndicator mPagerIndicator;
 
     FragmentAdapter mAdapter;
 
     SparseArray<int[]> mLayoutViewIdsMap = new SparseArray<int[]>();
+
+    String[] mGuideTips;
 
     private void addGuide(BaseGuideFragment fragment) {
         mAdapter.addItem(fragment);
@@ -31,6 +36,10 @@ public class SplashActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_guide);
+
+        mGuideTips = getResources().getStringArray(R.array.array_guide_tips);
+
+        mTextSwitcher = (TextSwitcher) findViewById(R.id.tip);
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
@@ -47,6 +56,7 @@ public class SplashActivity extends ActionBarActivity {
 
         mPagerIndicator.setViewPager(mPager);
 
+        mPager.setOnPageChangeListener(new MyPageChangeListener());
         mPager.setPageTransformer(true, new ParallaxTransformer(PARALLAX_COEFFICIENT, DISTANCE_COEFFICIENT));
     }
 
@@ -75,6 +85,24 @@ public class SplashActivity extends ActionBarActivity {
                 }
                 scrollXOffset *= distanceCoefficient;
             }
+        }
+    }
+
+    class MyPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            if (mGuideTips != null && mGuideTips.length > position) {
+                mTextSwitcher.setText(mGuideTips[position]);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
         }
     }
 }

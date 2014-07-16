@@ -10,7 +10,22 @@
 
     <string name="goto_world">随便看看</string>
 
-    <string name="tip_guide_six">与世界分享\n你的知识、经验和见解</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
+
+    <string name="tip_guide_first">观而思——知乎漫游指南</string>
+    <string name="tip_guide_second">思而动——知乎漫游指南</string>
+    <string name="tip_guide_third">动而问——知乎漫游指南</string>
+    <string name="tip_guide_fourth">问而答——知乎漫游指南</string>
+    <string name="tip_guide_fifth">答而得——知乎漫游指南</string>
+    <string name="tip_guide_six">与世界分享\n你的知识、经验和见解</string>
+
+    <array name="array_guide_tips">
+        <item>@string/tip_guide_first</item>
+        <item>@string/tip_guide_second</item>
+        <item>@string/tip_guide_third</item>
+        <item>@string/tip_guide_fourth</item>
+        <item>@string/tip_guide_fifth</item>
+        <item>@null</item>
+    </array>
 </resources>
