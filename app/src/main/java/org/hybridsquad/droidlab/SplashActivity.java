@@ -53,11 +53,10 @@ public class SplashActivity extends ActionBarActivity {
         addGuide(new SixthGuideFragment());
 
         mPager.setAdapter(mAdapter);
-
         mPagerIndicator.setViewPager(mPager);
 
-        mPager.setOnPageChangeListener(new MyPageChangeListener());
         mPager.setPageTransformer(true, new ParallaxTransformer(PARALLAX_COEFFICIENT, DISTANCE_COEFFICIENT));
+        mPagerIndicator.setOnPageChangeListener(new MyPageChangeListener());
     }
 
     class ParallaxTransformer implements ViewPager.PageTransformer {
