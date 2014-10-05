@@ -11,7 +11,7 @@
 
 项目中图片等素材均取自于知乎 Android 客户端，仅作学习交流之用，请勿用于商业用途！
 
-# LICENSE
+## LICENSE
 The MIT License (MIT)
 
 Copyright (c) 2014 [Ryan Hoo][3]
